@@ -1,0 +1,68 @@
+type User {
+  _id: String
+  firstName: String
+  lastName: String
+  resetPasswordToken: String
+  resetPasswordExpires: Float
+  isVerified: Boolean
+  isOnline: Boolean
+  isLocked: Boolean
+  reason: String
+  isActive: Boolean
+  stripeId: String
+  ccLast4: String
+  createdAt: Float
+  updatedAt: Float
+}
+
+input UserInput {
+  firstName: String!
+  lastName: String!
+}
+
+input UserSearchInput {
+  _id: String
+  firstName: String
+  lastName: String
+  resetPasswordToken: String
+  resetPasswordExpires: Float
+  isVerified: Boolean
+  isOnline: Boolean
+  isLocked: Boolean
+  reason: String
+  isActive: Boolean
+  stripeId: String
+  ccLast4: String
+  createdAt: Float
+  updatedAt: Float
+}
+
+input UserUpdateInput {
+  _id: String
+  firstName: String
+  lastName: String
+  resetPasswordToken: String
+  resetPasswordExpires: Float
+  isVerified: Boolean
+  isOnline: Boolean
+  isLocked: Boolean
+  reason: String
+  isActive: Boolean
+  stripeId: String
+  ccLast4: String
+}
+
+# input UserSearchByInput{
+
+# }
+
+type Query {
+  users: [User!]
+  searchUser(payload: UserSearchInput): [User!]
+  user(_id: String): User!
+}
+
+type Mutation {
+  addNewUser(input: UserInput!): User!
+  updateUser(_id: String!, payload: UserUpdateInput!): Boolean!
+}

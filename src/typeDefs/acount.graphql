@@ -1,0 +1,63 @@
+type Account {
+  _id: String!
+  userId: String!
+  userName: String!
+  password: String!
+  createdAt: Float
+  updatedAt: Float
+}
+
+input AccountInput {
+  userName: String!
+  password: String!
+  userProfile: UserInput!
+}
+
+input AccountSearchInput {
+  _id: String
+  userId: String
+  userName: String
+  createdAt: Float
+  updatedAt: Float
+}
+
+type AccountResponse {
+  _id: String
+  userId: String
+  userName: String
+  createdAt: Float
+  updatedAt: Float
+}
+
+type UserProfileResponseLogin {
+  _id: String
+  firstName: String
+  lastName: String
+}
+
+type AuthPayload {
+  token: String!
+  userProfile: UserProfileResponseLogin!
+}
+
+input LoginInput {
+  userName: String!
+  password: String!
+}
+
+type Query {
+  accounts(payload: AccountSearchInput): [AccountResponse!]
+  account(_id: String): AccountResponse!
+}
+
+input ChangePasswordInput {
+  _id: String!
+  password: String!
+}
+
+type Mutation {
+  register(input: AccountInput!): AccountResponse!
+  # updateAccount(payload: AccountInput!): Account!
+  changePassword(payload: ChangePasswordInput!): Boolean!
+  login(payload: LoginInput): AuthPayload!
+}

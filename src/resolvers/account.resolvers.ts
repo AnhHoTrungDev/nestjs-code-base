@@ -19,12 +19,12 @@ import { getMongoRepository } from 'typeorm';
 
 @Resolver()
 export class AccountResolver {
-  @UseGuards(AuthGuard('local'))
-  @Mutation()
-  async login(@Args(`payload`) payload: LoginInput) {
-    console.log('payload :>> ', payload);
-    return true
-  }
+  // @UseGuards(AuthGuard('local'))
+  // @Mutation()
+  // async login(@Args(`payload`) payload: LoginInput) {
+  //   console.log('payload :>> ', payload);
+  //   return true
+  // }
 
   @Query()
   async accounts(@Args(`payload`) payload): Promise<AccountResponse[]> {
@@ -72,37 +72,37 @@ export class AccountResolver {
     });
   }
 
-  @Mutation()
-  async register(@Args(`input`) account: AccountInput): Promise<AccountEntity> {
-    const { userProfile, ...refAccount } = account;
-    const findAccount = await getMongoRepository(AccountEntity).findOne({
-      where: { userName: refAccount.userName },
-    });
+  // @Mutation()
+  // async register(@Args(`input`) account: AccountInput): Promise<AccountEntity> {
+  //   const { userProfile, ...refAccount } = account;
+  //   const findAccount = await getMongoRepository(AccountEntity).findOne({
+  //     where: { userName: refAccount.userName },
+  //   });
 
-    if (findAccount) {
-      throw new ConflictException(`'user name' already exists`);
-    }
+  //   if (findAccount) {
+  //     throw new ConflictException(`'user name' already exists`);
+  //   }
 
-    if (
-      !userProfile ||
-      userProfile.firstName === '' ||
-      userProfile.lastName === ''
-    ) {
-      throw new BadRequestException('User need last name and first name');
-    }
+  //   if (
+  //     !userProfile ||
+  //     userProfile.firstName === '' ||
+  //     userProfile.lastName === ''
+  //   ) {
+  //     throw new BadRequestException('User need last name and first name');
+  //   }
 
-    try {
-      const user = await getMongoRepository(UserEntity).save(
-        new UserEntity(userProfile),
-      );
+  //   try {
+  //     const user = await getMongoRepository(UserEntity).save(
+  //       new UserEntity(userProfile),
+  //     );
 
-      return getMongoRepository(AccountEntity).save(
-        new AccountEntity({ ...refAccount, userId: user._id }),
-      );
-    } catch (err) {
-      throw new HttpException(err, 500);
-    }
-  }
+  //     return getMongoRepository(AccountEntity).save(
+  //       new AccountEntity({ ...refAccount, userId: user._id }),
+  //     );
+  //   } catch (err) {
+  //     throw new HttpException(err, 500);
+  //   }
+  // }
 
   @Mutation()
   async changePassword(

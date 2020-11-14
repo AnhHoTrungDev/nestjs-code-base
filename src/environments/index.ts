@@ -12,3 +12,6 @@ export const DATA_DB: string = env.MONGO_DB || 'anh-ho-db';
 export const DATA_PORT: number = +env.MONGO_PORT || 2717;
 export const DATA_URL: string = `mongodb://localhost:${DATA_PORT}/${DATA_DB}`;
 export const DATA_TYPE: string = env.DATA_TYPE || 'mongodb';
+
+//jwt 
+export const JWT_SECRET: string =process.env.JWT_SECRET || 'anh dep trai'

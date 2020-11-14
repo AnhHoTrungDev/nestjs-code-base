@@ -36,7 +36,7 @@ type UserProfileResponseLogin {
 }
 
 type AuthPayload {
-  token: String!
+  access_token: String!
   userProfile: UserProfileResponseLogin!
 }
 
@@ -56,8 +56,8 @@ input ChangePasswordInput {
 }
 
 type Mutation {
-  register(input: AccountInput!): AccountResponse!
+  register(input: AccountInput!): AuthPayload
   # updateAccount(payload: AccountInput!): Account!
   changePassword(payload: ChangePasswordInput!): Boolean!
-  login(payload: LoginInput): AuthPayload!
+  login(payload: LoginInput): AuthPayload
 }

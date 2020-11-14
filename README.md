@@ -73,3 +73,6 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+
+# https://dev.to/nikitakot/building-nestjs-app-boilerplate-authentication-validation-graphql-and-prisma-f1d

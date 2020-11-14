@@ -91,7 +91,7 @@ export class UserProfileResponseLogin {
 }
 
 export class AuthPayload {
-    token: string;
+    access_token: string;
     userProfile: UserProfileResponseLogin;
 }
 
@@ -108,7 +108,7 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract register(input: AccountInput): AccountResponse | Promise<AccountResponse>;
+    abstract register(input: AccountInput): AuthPayload | Promise<AuthPayload>;
 
     abstract changePassword(payload: ChangePasswordInput): boolean | Promise<boolean>;
 
